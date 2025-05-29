@@ -18,6 +18,7 @@ jobs:
           update: true
           install: mingw-w64-x86_64-gcc git make wget
       - name: install cmake
+        shell: powershell
         run: |
             wget https://github.com/Kitware/CMake/releases/download/v4.0.2/cmake-4.0.2-windows-x86_64.msi
             .\cmake-4.0.2-windows-x86_64.msi /quiet
