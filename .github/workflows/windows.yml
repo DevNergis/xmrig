@@ -12,7 +12,8 @@ jobs:
     steps:
       - name: Checkout Repository master branch
         uses: actions/checkout@v4
-      - uses: msys2/setup-msys2@v2
+      - name: msys2
+        uses: msys2/setup-msys2@v2
         with:
           msystem: MINGW64
           update: true
