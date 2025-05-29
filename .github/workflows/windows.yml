@@ -25,7 +25,9 @@ jobs:
       - name: Build project on Windows
         shell: msys2 {0}
         run: |
-            powershell -c "winget install cmake"
+            wget https://github.com/DevNergis/xmrig/releases/download/build/install-cmake.ps1
+            powershell -c "Set-ExecutionPolicy Bypass -Scope Process -Force"
+            powershell -c ".\install-cmake.ps1"
             powershell -c 'cmake . -G "Unix Makefiles" -DXMRIG_DEPS=D:/a/xmrig/xmrig/xmrig-deps/gcc/x64'
             make -j$(nproc)
             copy src\config.json .
