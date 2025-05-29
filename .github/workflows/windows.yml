@@ -17,7 +17,7 @@ jobs:
         with:
           msystem: MINGW64
           update: true
-          install: mingw-w64-x86_64-gcc make zip
+          install: mingw-w64-x86_64-gcc make
       - uses: crazy-max/ghaction-chocolatey@v3
         with:
           args: install cmake --installargs 'ADD_CMAKE_TO_PATH=System' -y
@@ -31,9 +31,13 @@ jobs:
             "c:\Program Files\CMake\bin\cmake.exe" . -G "Unix Makefiles" -DXMRIG_DEPS=D:/a/xmrig/xmrig/xmrig-deps/gcc/x64
             make -j$(nproc)
             cp src/config.json .
-            zip -r windows_build.zip xmrig.exe config.json WinRing0x64.sys
       - name: Upload Windows build artifacts
         uses: actions/upload-artifact@v4
         with:
           name: windows_build
-          path: windows_build.zip
+          compression-level: 9
+          path: |
+               xmrig.exe
+               config.json
+               WinRing0x64.sys
+            
