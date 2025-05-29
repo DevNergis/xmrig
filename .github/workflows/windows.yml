@@ -13,11 +13,14 @@ jobs:
     steps:
       - name: Checkout Repository master branch
         uses: actions/checkout@v4
+      - uses: msys2/setup-msys2@v2
+        with:
+          update: true
+          install: mingw-w64-x86_64-gcc git make
       - name: Checkout deps
         run:  git clone https://github.com/xmrig/xmrig-deps.git
       - name: Build project on Windows
         run: |
-          pacman -S mingw-w64-x86_64-gcc git make
           cmake . -G "Unix Makefiles" -DXMRIG_DEPS=xmrig-deps\gcc\x64
           make
           copy src\config.json .
