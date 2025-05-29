@@ -16,7 +16,7 @@ jobs:
       - uses: msys2/setup-msys2@v2
         with:
           update: true
-          install: mingw-w64-x86_64-gcc git make
+          install: mingw-w64-x86_64-gcc git make cmake
       - name: Checkout deps
         run:  git clone https://github.com/xmrig/xmrig-deps.git
       - name: Build project on Windows
