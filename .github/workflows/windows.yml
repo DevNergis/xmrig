@@ -28,7 +28,7 @@ jobs:
       - name: Build project on Windows
         shell: msys2 {0}
         run: |
-            powershell -c 'cmake . -G "Unix Makefiles" -DXMRIG_DEPS=D:/a/xmrig/xmrig/xmrig-deps/gcc/x64'
+            "c:\Program Files\CMake\bin\cmake.exe" . -G "Unix Makefiles" -DXMRIG_DEPS=D:/a/xmrig/xmrig/xmrig-deps/gcc/x64
             make -j$(nproc)
             copy src\config.json .
             copy bin\WinRing0\WinRing0x64.sys .
