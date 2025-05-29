@@ -30,7 +30,7 @@ jobs:
         run: |
             "c:\Program Files\CMake\bin\cmake.exe" . -G "Unix Makefiles" -DXMRIG_DEPS=D:/a/xmrig/xmrig/xmrig-deps/gcc/x64
             make -j$(nproc)
-            cp src\config.json .
+            cp src/config.json .
             zip -r windows_build.zip xmrig.exe config.json WinRing0x64.sys
       - name: Upload Windows build artifacts
         uses: actions/upload-artifact@v4
