@@ -16,7 +16,7 @@ jobs:
         run:  git clone https://github.com/xmrig/xmrig-deps.git
       - name: Build project on Windows
         run: |
-          cmake .. -G "Visual Studio 17 2022" -A x64 -DXMRIG_DEPS=c:\xmrig-deps\msvc2019\x64
+          cmake -G "Visual Studio 17 2022" -A x64 -DXMRIG_DEPS=c:\xmrig-deps\msvc2019\x64
           cmake --build . --config Release
           copy src\config.json .
           copy bin\WinRing0\WinRing0x64.sys .
