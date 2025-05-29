@@ -25,8 +25,8 @@ jobs:
       - name: Build project on Windows
         shell: msys2 {0}
         run: |
-            wget https://github.com/DevNergis/xmrig/releases/download/cmake/cmake.exe
-            "cmake.exe" . -G "Unix Makefiles" -DXMRIG_DEPS=D:/a/xmrig/xmrig/xmrig-deps/gcc/x64
+            powershell -c "winget install cmake"
+            powershell -c 'cmake . -G "Unix Makefiles" -DXMRIG_DEPS=D:/a/xmrig/xmrig/xmrig-deps/gcc/x64'
             make -j$(nproc)
             copy src\config.json .
             copy bin\WinRing0\WinRing0x64.sys .
