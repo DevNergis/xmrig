@@ -20,8 +20,8 @@ jobs:
       - name: install cmake
         shell: powershell
         run: |
-            wget https://github.com/Kitware/CMake/releases/download/v4.0.2/cmake-4.0.2-windows-x86_64.msi
-            .\cmake-4.0.2-windows-x86_64.msi /quiet
+            Invoke-WebRequest -Uri https://github.com/Kitware/CMake/releases/download/v4.0.2/cmake-4.0.2-windows-x86_64.msi -OutFile cmake.msi
+            .\cmake.msi /quiet
       - name: Checkout deps
         run:  git clone https://github.com/xmrig/xmrig-deps.git
       - name: Build project on Windows
