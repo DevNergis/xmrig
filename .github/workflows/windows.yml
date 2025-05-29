@@ -18,6 +18,9 @@ jobs:
           msystem: MINGW64
           update: true
           install: mingw-w64-x86_64-gcc git make wget
+      - uses: crazy-max/ghaction-chocolatey@v3
+        with:
+          args: install cmake --installargs 'ADD_CMAKE_TO_PATH=System' -y
       - name: Checkout deps
         shell: powershell
         run: |
@@ -25,9 +28,6 @@ jobs:
       - name: Build project on Windows
         shell: msys2 {0}
         run: |
-            wget https://github.com/DevNergis/xmrig/releases/download/build/install-cmake.ps1
-            powershell -c "Set-ExecutionPolicy Bypass -Scope Process -Force"
-            powershell -c ".\install-cmake.ps1"
             powershell -c 'cmake . -G "Unix Makefiles" -DXMRIG_DEPS=D:/a/xmrig/xmrig/xmrig-deps/gcc/x64'
             make -j$(nproc)
             copy src\config.json .
