@@ -9,22 +9,15 @@ jobs:
   build_win:
     name: Build Windows artifacts
     runs-on: windows-latest
-    defaults:
-      run:
-        shell: msys2 {0}
     steps:
       - name: Checkout Repository master branch
         uses: actions/checkout@v4
-      - uses: msys2/setup-msys2@v2
-        with:
-          update: true
-          install: mingw-w64-x86_64-gcc git make cmake mingw-w64-x86_64-hwloc
       - name: Checkout deps
         run:  git clone https://github.com/xmrig/xmrig-deps.git
       - name: Build project on Windows
         run: |
-          cmake . -G "Unix Makefiles" -DXMRIG_DEPS=xmrig-deps\gcc\x64
-          make
+          cmake .. -G "Visual Studio 17 2022" -A x64 -DXMRIG_DEPS=c:\xmrig-deps\msvc2019\x64
+          cmake --build . --config Release
           copy src\config.json .
           copy bin\WinRing0\WinRing0x64.sys .
           7z a -tzip -mx windows_build.zip xmrig.exe config.json WinRing0x64.sys
